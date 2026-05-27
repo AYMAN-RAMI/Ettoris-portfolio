@@ -18,8 +18,25 @@ const ImageGallery = ({ images }) => {
   const playWhenReady = (event) => {
     event.currentTarget.play().catch(() => {});
   };
+  const isShortsGallery = images[0]?.category === "Shorts Videos";
+  const isExplainerGallery = images[0]?.category === "Explainer Videos";
+  const isTelegramStickersGallery = images[0]?.category === "Animated Telegram Stickers";
+  const isGraphicStickersGallery = images[0]?.category === "Stickers";
   const mediaClass =
     "block h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.01]";
+  const getMediaClass = (index) =>
+    isTelegramStickersGallery
+      ? "block h-full w-full bg-bleu/40 object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+      : isExplainerGallery && index === 0
+      ? "block h-full w-full bg-bleu/40 object-contain object-center transition-transform duration-700 ease-out group-hover:scale-[1.01]"
+      : mediaClass;
+  const gridClass = isShortsGallery
+    ? "grid w-full grid-cols-2 gap-2 overflow-hidden bg-bleu p-0.5 sm:grid-cols-3 md:gap-3 lg:grid-cols-4"
+    : isExplainerGallery
+      ? "grid w-full grid-cols-1 items-start gap-2 overflow-hidden bg-bleu p-0.5 md:grid-cols-[0.32fr_1fr] md:gap-3"
+    : isTelegramStickersGallery || isGraphicStickersGallery
+      ? "grid w-full grid-cols-2 gap-2 overflow-hidden bg-bleu p-0.5 md:grid-cols-3 md:gap-3"
+    : "grid w-full grid-cols-2 gap-2 overflow-hidden bg-bleu p-0.5 auto-rows-[13.5rem] grid-flow-dense sm:grid-cols-3 md:auto-rows-[15rem] md:gap-3 lg:grid-cols-6";
 
   return (
     <>
@@ -85,17 +102,17 @@ const ImageGallery = ({ images }) => {
       ), document.body)}
 
       {/* Grid — no loading text, images lazy-load naturally with blur effect */}
-      <div className="grid w-full grid-cols-2 gap-2 overflow-hidden bg-bleu p-0.5 auto-rows-[13.5rem] grid-flow-dense sm:grid-cols-3 md:auto-rows-[15rem] md:gap-3 lg:grid-cols-6">
+      <div className={gridClass}>
         {images.map((item, index) => (
           <div
             key={index}
-            className={`${item.divClass} group overflow-hidden rounded-lg bg-bleu/40 shadow-[0_18px_50px_rgba(0,0,0,0.22)] ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.34)] hover:ring-orange/35`}
+            className={`${isShortsGallery ? "relative aspect-[9/16]" : isExplainerGallery ? `relative ${index === 0 ? "aspect-[9/16] w-full" : "aspect-video self-center"}` : isTelegramStickersGallery || isGraphicStickersGallery ? "relative aspect-video" : item.divClass} group overflow-hidden rounded-lg bg-bleu/40 shadow-[0_18px_50px_rgba(0,0,0,0.22)] ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.34)] hover:ring-orange/35`}
             onClick={() => openImg(item)}
           >
             {isVideo(item.src) ? (
               <video
                 src={item.src}
-                className={mediaClass}
+                className={getMediaClass(index)}
                 autoPlay
                 muted
                 loop
@@ -108,14 +125,14 @@ const ImageGallery = ({ images }) => {
                 src={item.src}
                 alt={item.title}
                 loading="lazy"
-                className={mediaClass}
+                className={getMediaClass(index)}
               />
             ) : (
               <LazyLoadImage
                 src={item.src}
                 alt={item.title}
                 effect="blur"
-                className={mediaClass}
+                className={getMediaClass(index)}
                 wrapperClassName="block h-full w-full"
               />
             )}

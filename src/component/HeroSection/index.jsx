@@ -1,9 +1,11 @@
+import { mediaUrl } from "../../config/media";
+
 const HeroSection = () => {
     return ( 
         <section className="sticky top-[56px] h-[calc(100vh-80px)] overflow-hidden md:h-screen" aria-label="hero section">
             <video
                 className="w-full h-full object-cover animate-hero-drift will-change-transform"
-                src="images/Hero section.webm"
+                src={mediaUrl("images/Hero section.webm")}
                 autoPlay
                 loop
                 muted

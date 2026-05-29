@@ -1,3 +1,4 @@
+import { mediaUrl } from "../../config/media";
 const HeroSection2 = () => {
   return (
     <section
@@ -6,7 +7,7 @@ const HeroSection2 = () => {
     >
       <video
         className="absolute inset-0 h-full w-full object-cover"
-        src="images/Hero Section Animation2.webm"
+        src={mediaUrl("images/Hero Section Animation2.webm")}
         autoPlay
         loop
         muted

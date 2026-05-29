@@ -8,7 +8,7 @@ const FeaturedWork = () => {
     .slice(0, 4);
 
   return (
-    <section id="featured_work" className="relative z-10 w-full overflow-hidden bg-bleu/95 shadow-[0_-34px_90px_rgba(0,0,0,0.62)]">
+    <section id="featured_work" className="relative z-10 w-full overflow-hidden bg-bleu/95 before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-24 before:shadow-[0_-34px_90px_rgba(0,0,0,0.62)] before:content-['']">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 top-0 h-56 bg-gradient-to-b from-noir to-bleu md:h-80"

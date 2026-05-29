@@ -94,12 +94,12 @@ const NavBar = () => {
   }, [activeLink, isHome, location.pathname]);
 
   const linkBase =
-    "py-4 capitalize transition-all duration-300 ease-out hover:text-orange defaut";
+    "nav-adaptive py-4 capitalize font-light tracking-[0.08em] text-white transition-all duration-300 ease-out hover:text-orange defaut";
 
   const activeClass = "selected";
 
   const dropdownBase =
-    "invisible absolute left-0 top-full min-w-64 translate-y-2 overflow-hidden rounded-b-xl border border-white/10 bg-bleu/85 py-2 opacity-0 shadow-2xl shadow-black/40 backdrop-blur-2xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100";
+    "invisible absolute left-0 top-full min-w-64 translate-y-2 overflow-hidden rounded-b-xl border border-white/10 bg-[#050914]/95 py-2 opacity-0 shadow-2xl shadow-black/40 backdrop-blur-2xl transition-all duration-300 ease-out group-hover:visible group-hover:translate-y-0 group-hover:opacity-100";
 
   const categoryLinkBase =
     "block whitespace-nowrap px-4 py-2.5 text-sm text-white/70 transition-all duration-200 hover:bg-white/5 hover:text-orange";
@@ -112,12 +112,12 @@ const NavBar = () => {
 
   return (
     <>
-      <header className="h-[56px] w-full top-0 left-0 bg-bleu/82 fixed z-30 text-white flex items-center justify-between border-b border-white/10 px-4 text-sm shadow-xl shadow-black/35 backdrop-blur-2xl lg:px-6 lg:text-base">
+      <header className="h-[56px] w-full top-0 left-0 fixed z-30 text-white flex items-center justify-between bg-[#020205]/55 px-4 text-sm backdrop-blur-md lg:px-6 lg:text-base">
         <a href="/" className="shrink-0">
           <img
             src="images/OE.png"
             alt="logo"
-            className="h-[40px] fill-white transition-transform duration-300 hover:scale-105"
+            className="nav-adaptive h-[40px] fill-white transition-transform duration-300 hover:scale-105"
           />
         </a>
 
@@ -198,7 +198,7 @@ const NavBar = () => {
 
         <button
           onClick={() => setMenuOpen(o => !o)}
-          className="lg:hidden p-2 rounded hover:bg-white/10 transition-colors"
+          className="nav-adaptive lg:hidden p-2 rounded transition-colors"
           aria-label="Toggle menu"
         >
           {menuOpen ? (

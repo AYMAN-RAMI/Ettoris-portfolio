@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import GraphicDesignPage from "../component/Graphic_design";
 import HeroSection from "../component/HeroSection";
+import HeroSection2 from "../component/HeroSection2";
 import MotionDesignPage from "../component/Motion_design";
 import FeaturedWork from "../component/work/FeaturedWork";
 import graphicDesignItems from "../data/graphicDesign";
@@ -8,6 +9,7 @@ import motionDesignItems from "../data/motionDesign";
 
 const Footer = lazy(() => import('../component/Footer'));
 const About = lazy(() => import('../component/About'));
+const USE_HERO_SECTION_2 = true;
 
 const Accueil = () => {
     const classes = {
@@ -154,7 +156,7 @@ const Accueil = () => {
 
     return (
         <>
-            <HeroSection />
+            {USE_HERO_SECTION_2 ? <HeroSection2 /> : <HeroSection />}
             <div className="relative bg-bleu min-h-screen">
                 <Suspense fallback={<div>LOADING...</div>}>
                     <FeaturedWork />
@@ -166,7 +168,7 @@ const Accueil = () => {
                     <MotionDesignPage imagesArr={motionDesignItems} />
                     <div
                         aria-hidden="true"
-                        className="h-16 md:h-24 bg-bleu"
+                        className="h-4 md:h-6 bg-bleu"
                     />
                     <About />
                     <Footer />

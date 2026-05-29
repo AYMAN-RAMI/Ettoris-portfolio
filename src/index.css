@@ -132,6 +132,114 @@
     cursor: url('/pen.png'), pointer;
   }
 
+  @keyframes hero2-premium-in {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes hero2-premium-float {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(-1.4%, -2.2%, 0) rotate(1deg);
+    }
+  }
+
+  @keyframes hero2-premium-pulse {
+    0%, 100% {
+      opacity: 0.45;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.82;
+      transform: scale(1.08);
+    }
+  }
+
+  @keyframes hero2-premium-streak {
+    0%, 100% {
+      opacity: 0.34;
+      transform: translateX(-5%);
+    }
+    50% {
+      opacity: 0.95;
+      transform: translateX(6%);
+    }
+  }
+
+  @keyframes hero2-logo-wave {
+    0%, 100% {
+      transform: rotateX(10deg) rotateY(-16deg) rotateZ(-7deg) translate3d(0, 0, 0);
+    }
+    25% {
+      transform: rotateX(13deg) rotateY(-11deg) rotateZ(-5deg) translate3d(-1.2%, -1.4%, 34px);
+    }
+    50% {
+      transform: rotateX(8deg) rotateY(-19deg) rotateZ(-9deg) translate3d(1%, -2.2%, 18px);
+    }
+    75% {
+      transform: rotateX(12deg) rotateY(-13deg) rotateZ(-6deg) translate3d(-0.8%, 0.8%, 28px);
+    }
+  }
+
+  @keyframes hero2-logo-shine {
+    0%, 100% {
+      filter: saturate(1.02) brightness(1) drop-shadow(0 0 12px rgba(228,58,25,0.14));
+      opacity: 0.9;
+    }
+    50% {
+      filter: saturate(1.12) brightness(1.08) drop-shadow(0 0 22px rgba(228,58,25,0.28));
+      opacity: 1;
+    }
+  }
+
+  .hero2-premium-in,
+  .hero2-premium-title {
+    animation: hero2-premium-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero2-premium-float {
+    animation: hero2-premium-float 8s ease-in-out infinite;
+  }
+
+  .hero2-premium-pulse {
+    animation: hero2-premium-pulse 5.5s ease-in-out infinite;
+  }
+
+  .hero2-premium-streak {
+    animation: hero2-premium-streak 4.8s ease-in-out infinite;
+  }
+
+  .hero2-premium-streak-delay {
+    animation-delay: 1.2s;
+  }
+
+  .hero2-logo-wave {
+    animation: hero2-logo-wave 9.5s ease-in-out infinite;
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+
+  .hero2-logo-shine {
+    animation: hero2-logo-shine 5.8s ease-in-out infinite;
+  }
+
+  .hero2-premium-noise {
+    background-image:
+      radial-gradient(circle at 18% 28%, rgba(255,255,255,0.14) 0 1px, transparent 1px),
+      radial-gradient(circle at 76% 68%, rgba(255,255,255,0.1) 0 1px, transparent 1px);
+    background-size: 24px 24px, 38px 38px;
+  }
+
 }
 
 @layer base {
@@ -169,6 +277,14 @@
         text-decoration-thickness: 15%;   */    
         background-position: 100% 100%;
         background-size: 100% 3px;
+      }
+
+      .nav-adaptive {
+        mix-blend-mode: difference;
+      }
+
+      .nav-adaptive.selected {
+        color: #ffffff;
       }
       
       html, body, #root {

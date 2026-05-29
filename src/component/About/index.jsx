@@ -1,6 +1,14 @@
 const About = () => {
     return ( 
     <section id="about" className="relative w-full bg-bleu py-5 md:py-14 ">
+        <div className="px-4 md:px-10 pt-0 pb-4 md:pb-6 max-w-7xl mx-auto">
+            <p className="text-orange text-xs uppercase tracking-[0.3em] font-semibold mb-3">
+                Who am I?
+            </p>
+            <h2 className="text-[2.55rem] md:text-6xl lg:text-[4.4rem] font-black text-white leading-none tracking-tight">
+                About
+            </h2>
+        </div>
         <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:max-w-7xl p-4 mx-auto ">
 
             <div className="relative lg:w-2/5">

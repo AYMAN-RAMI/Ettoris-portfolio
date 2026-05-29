@@ -36,12 +36,16 @@ const NavBar = () => {
   }, []);
 
   useEffect(() => {
+    const timeout = window.setTimeout(() => {
     if (!isHome) {
       setActiveLink(null);
       return;
     }
 
     setActiveLink(sectionFromHash[location.hash] ?? null);
+    }, 0);
+
+    return () => window.clearTimeout(timeout);
   }, [isHome, location.hash, location.search]);
 
   useEffect(() => {

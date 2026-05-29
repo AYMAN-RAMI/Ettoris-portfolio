@@ -3,8 +3,7 @@ import { graphicCategories } from "../../data/categories";
 
 const GraphicDesignPage = ({imagesArr}) => {
     const handleCategoryChange = (category) => {
-        console.log("Selected:", category);
-        // filter images/products accordingly
+        void category;
     };
     return ( 
         <section id="graphic_design" className="bg-bleu/95 w-full">

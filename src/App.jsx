@@ -41,10 +41,13 @@ function App() {
 
     if (!shouldShowLoader) return;
 
-    setIsLoading(true);
-    const timeout = window.setTimeout(() => setIsLoading(false), LOADER_DURATION);
+    const startTimeout = window.setTimeout(() => setIsLoading(true), 0);
+    const endTimeout = window.setTimeout(() => setIsLoading(false), LOADER_DURATION);
 
-    return () => window.clearTimeout(timeout);
+    return () => {
+      window.clearTimeout(startTimeout);
+      window.clearTimeout(endTimeout);
+    };
   }, [location.pathname, location.search, location.hash]);
 
   return (

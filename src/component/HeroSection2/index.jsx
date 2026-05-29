@@ -5,7 +5,7 @@ const HeroSection2 = () => {
       aria-label="premium cinematic hero section"
     >
       <video
-        className="absolute inset-0 h-full w-full object-fill"
+        className="absolute inset-0 h-full w-full object-cover"
         src="images/Hero Section Animation2.webm"
         autoPlay
         loop
@@ -14,7 +14,7 @@ const HeroSection2 = () => {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 mx-auto grid min-h-screen w-full max-w-[1480px] grid-cols-1 px-6 pb-24 pt-[22vh] -translate-y-[17px] md:px-10 md:pt-[24vh] lg:grid-cols-[52%_48%] lg:px-[70px] lg:pt-[25vh]">
+      <div className="relative z-10 mx-auto grid min-h-screen w-full max-w-[1480px] grid-cols-1 px-6 pb-24 pt-[22vh] translate-y-[43px] md:px-10 md:pt-[24vh] lg:grid-cols-[52%_48%] lg:px-[70px] lg:pt-[25vh]">
         <div className="relative z-20 flex max-w-[680px] flex-col items-start">
 
           <h1 className="hero2-premium-title text-[3.35rem] font-black leading-[0.9] tracking-[-0.055em] text-white drop-shadow-[0_22px_46px_rgba(0,0,0,0.62)] sm:text-[4.4rem] md:text-[5.45rem] xl:text-[6.35rem]">

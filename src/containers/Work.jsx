@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-// import work from "../data/work";
 import work from "../data/work";
 import WorkCard from "../component/work/WorkCard";
 
@@ -7,13 +6,11 @@ const Work = () => {
   const headingRef = useRef(null);
   const gridRef = useRef(null);
 
-  // Subtle entrance animation on mount
   useEffect(() => {
     const heading = headingRef.current;
     const grid = gridRef.current;
     if (!heading || !grid) return;
 
-    // Stagger the heading and grid
     heading.style.opacity = "0";
     heading.style.transform = "translateY(30px)";
     grid.style.opacity = "0";
@@ -32,10 +29,7 @@ const Work = () => {
 
   return (
     <section id="work" className="relative bg-bleu min-h-screen w-full">
-      {/* Page content */}
       <div className="px-4 md:px-10 pt-6 pb-8 md:pt-8 md:pb-10 max-w-7xl mx-auto">
-
-        {/* Header */}
         <div ref={headingRef} className="mb-5 md:mb-7">
           <p className="text-orange text-xs uppercase tracking-[0.3em] font-semibold mb-3">
             Selected Work
@@ -48,7 +42,6 @@ const Work = () => {
           </p>
         </div>
 
-        {/* Grid */}
         <div
           ref={gridRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-3 md:gap-4"

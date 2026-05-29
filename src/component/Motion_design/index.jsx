@@ -4,7 +4,7 @@ import motionDesignItems from "../../data/motionDesign";
 
 const MotionDesignPage = ({ imagesArr }) => {
   const handleCategoryChange = (category) => {
-    console.log("Selected:", category);
+    void category;
   };
 
   const galleryItems = imagesArr?.length ? imagesArr : motionDesignItems;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ImageGallery from "../ImageGallery";
 import { graphicCategories } from "../../data/categories";
@@ -12,20 +12,20 @@ const NavigationComponent = ({
   const location = useLocation();
   const timeoutRef = useRef(null);
 
-  const getInitialCategory = () => {
+  const getInitialCategory = useCallback(() => {
     if (!categoryParam) return categories[0] || "";
 
     const selectedCategory = new URLSearchParams(location.search).get(categoryParam);
     return selectedCategory && categories.includes(selectedCategory)
       ? selectedCategory
       : categories[0] || "";
-  };
+  }, [categories, categoryParam, location.search]);
 
   const [activeCategory, setActive] = useState(getInitialCategory);
   const [fading, setFading] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const changeCategory = (category) => {
+  const changeCategory = useCallback((category) => {
     if (category === activeCategory) return;
 
     window.clearTimeout(timeoutRef.current);
@@ -41,13 +41,18 @@ const NavigationComponent = ({
         setLoading(false);
       }, 160);
     }, 160);
-  };
+  }, [activeCategory, onSelect]);
 
   useEffect(() => {
-    changeCategory(getInitialCategory());
+    const timeout = window.setTimeout(() => {
+      changeCategory(getInitialCategory());
+    }, 0);
 
-    return () => window.clearTimeout(timeoutRef.current);
-  }, [location.search, categoryParam]);
+    return () => {
+      window.clearTimeout(timeout);
+      window.clearTimeout(timeoutRef.current);
+    };
+  }, [changeCategory, getInitialCategory]);
 
   const filteredImages = imagesArr.filter(
     (img) => img.category === activeCategory

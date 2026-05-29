@@ -1,5 +1,3 @@
-import { mediaUrl } from "../../config/media";
-
 const LoadingScreen = ({ isVisible }) => (
   <div
     className={`fixed inset-0 z-[100] flex items-center justify-center bg-bleu/18 backdrop-blur-md transition-all duration-300 ${
@@ -13,7 +11,7 @@ const LoadingScreen = ({ isVisible }) => (
         <div className="absolute inset-1 rounded-full border-2 border-transparent border-t-orange border-r-orange animate-spin [animation-duration:0.75s]" />
         <div className="absolute inset-5 rounded-full bg-orange/20 blur-md" />
         <img
-          src={mediaUrl("/images/OE.png")}
+          src="/images/OE.png"
           alt=""
           className="absolute inset-0 m-auto h-9 w-9 object-contain"
         />

@@ -1,7 +1,6 @@
 import { Bars3Icon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { mediaUrl } from "../../config/media";
 import { graphicCategories, motionCategories } from "../../data/categories";
 import work from "../../data/work";
 import Side from '../SideBar/Side';
@@ -120,7 +119,7 @@ const NavBar = () => {
       <header className="h-[56px] w-full top-0 left-0 fixed z-30 text-white flex items-center justify-between bg-[#020205]/55 px-4 text-sm backdrop-blur-md lg:px-6 lg:text-base">
         <a href="/" className="shrink-0">
           <img
-            src={mediaUrl("images/OE.png")}
+            src="images/OE.png"
             alt="logo"
             className="nav-adaptive h-[40px] fill-white transition-transform duration-300 hover:scale-105"
           />

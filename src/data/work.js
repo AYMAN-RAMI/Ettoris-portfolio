@@ -1,4 +1,3 @@
-import { mediaUrl } from "../config/media";
 /**
  * Work data source.
  * Add new work here — the UI renders everything dynamically.
@@ -20,8 +19,8 @@ const work = [
     tagline: "Solana Memecoin · Brand & Content",
     description:
       "$MICHI is a Solana-based memecoin driven by community momentum and internet culture. Over 12 months I built its entire visual identity from scratch.",
-    cover: mediaUrl("/images/work/$Michi Work/Michi cover.png"),
-    hero: mediaUrl("/images/work/$Michi Work/Michi Banner.png"),
+    cover: "/images/work/$Michi Work/Michi cover.png",
+    hero: "/images/work/$Michi Work/Michi Banner.png",
     tags: ["Branding", "Illustration", "Web3", "Motion"],
     year: "2023 – 2024",
     role: "Lead Visual Designer",
@@ -34,8 +33,8 @@ const work = [
       {
         type: "grid",
         images: [
-          { src: mediaUrl("/images/work/$Michi Work/Michi 02.png"), alt: "$MICHI brand showcase" },
-          { src: mediaUrl("/images/work/$Michi Work/Michi 01.png"), alt: "$MICHI opening visual" },
+          { src: "/images/work/$Michi Work/Michi 02.png", alt: "$MICHI brand showcase" },
+          { src: "/images/work/$Michi Work/Michi 01.png", alt: "$MICHI opening visual" },
         ],
         columns: 2,
         aspect: "wide",
@@ -48,17 +47,17 @@ const work = [
       {
         type: "grid",
         images: [
-          { src: mediaUrl("/images/work/$Michi Work/Michi 03.png"), alt: "Michi design 03" },
-          { src: mediaUrl("/images/work/$Michi Work/Michi 04.png"), alt: "Michi design 04" },
-          { src: mediaUrl("/images/work/$Michi Work/Michi 06.png"), alt: "Michi design 06" },
-          { src: mediaUrl("/images/work/$Michi Work/Michi 07.png"), alt: "Michi design 07" },
-          { src: mediaUrl("/images/work/$Michi Work/Michi 08.png"), alt: "Michi design 08" },
+          { src: "/images/work/$Michi Work/Michi 03.png", alt: "Michi design 03" },
+          { src: "/images/work/$Michi Work/Michi 04.png", alt: "Michi design 04" },
+          { src: "/images/work/$Michi Work/Michi 06.png", alt: "Michi design 06" },
+          { src: "/images/work/$Michi Work/Michi 07.png", alt: "Michi design 07" },
+          { src: "/images/work/$Michi Work/Michi 08.png", alt: "Michi design 08" },
         ],
         columns: 3,
       },
       {
         type: "video",
-        src: mediaUrl("/images/work/$Michi Work/Michi 05.mp4"),
+        src: "/images/work/$Michi Work/Michi 05.mp4",
       },
       {
         type: "stat",
@@ -81,8 +80,8 @@ const work = [
     tagline: "Web3 Work · Motion & Content Design",
     description:
       "$SoCrazy is a Web3 brand focused on community engagement and digital culture. I created a motion-driven content system designed to improve communication, branding, and social engagement.",
-    cover: mediaUrl("/images/work/$SoCrazy Work/SoCrazy cover.png"),
-    hero: mediaUrl("/images/work/$SoCrazy Work/SoCrazy Banner.png"),
+    cover: "/images/work/$SoCrazy Work/SoCrazy cover.png",
+    hero: "/images/work/$SoCrazy Work/SoCrazy Banner.png",
     tags: ["Motion Design", "Web3", "Content Design", "Animation"],
     year: "2026",
     role: "Motion Designer & Visual Content Creator",
@@ -94,7 +93,7 @@ const work = [
       },
       {
         type: "video",
-        src: mediaUrl("/images/work/$SoCrazy Work/SoCrazy 02.mp4"),
+        src: "/images/work/$SoCrazy Work/SoCrazy 02.mp4",
         alt: "$SoCrazy motion design showcase",
         aspect: "wide",
       },
@@ -107,8 +106,8 @@ const work = [
         type: "video_grid",
         columns: 2,          // optional, defaults to 2
         videos: [
-          { src: mediaUrl("/images/work/$SoCrazy Work/SoCrazy 03.mp4"), label: "SoCrazy 03", fit: "contain" },
-          { src: mediaUrl("/images/work/$SoCrazy Work/SoCrazy 04.mp4"), label: "SoCrazy 04" },
+          { src: "/images/work/$SoCrazy Work/SoCrazy 03.mp4", label: "SoCrazy 03", fit: "contain" },
+          { src: "/images/work/$SoCrazy Work/SoCrazy 04.mp4", label: "SoCrazy 04" },
         ],
       },
       {
@@ -132,8 +131,8 @@ const work = [
     tagline: "XRP Memecoin · Motion & Content Design",
     description:
       "$XRPINU is a XRP-inspired memecoin focused on building a strong community through character-driven branding and engaging visual content. Over 4 months I helped shape the brand's visual identity across X (Twitter) and Telegram.",
-    cover: mediaUrl("/images/work/$XRPINU Work/XRPINU cover.png"),
-    hero: mediaUrl("/images/work/$XRPINU Work/XRPINU Banner.png"),
+    cover: "/images/work/$XRPINU Work/XRPINU cover.png",
+    hero: "/images/work/$XRPINU Work/XRPINU Banner.png",
     tags: ["Branding", "Illustration", "Web3", "Motion"],
     year: "2025",
     role: "Graphic & Motion Designer",
@@ -145,7 +144,7 @@ const work = [
       },
       {
         type: "image",
-        src: mediaUrl("/images/work/$XRPINU Work/XRPINU 02.png"),
+        src: "/images/work/$XRPINU Work/XRPINU 02.png",
         alt: "$XRPINU brand showcase",
         aspect: "wide",
       },
@@ -157,21 +156,21 @@ const work = [
       {
         type: "grid",
         images: [
-          { src: mediaUrl("/images/work/$XRPINU Work/XRPINU 03.png"), alt: "xrpinu design 03" },
-          { src: mediaUrl("/images/work/$XRPINU Work/XRPINU 04.png"), alt: "xrpinu design 04" },
-          { src: mediaUrl("/images/work/$XRPINU Work/XRPINU 05.png"), alt: "xrpinu design 05" },
+          { src: "/images/work/$XRPINU Work/XRPINU 03.png", alt: "xrpinu design 03" },
+          { src: "/images/work/$XRPINU Work/XRPINU 04.png", alt: "xrpinu design 04" },
+          { src: "/images/work/$XRPINU Work/XRPINU 05.png", alt: "xrpinu design 05" },
         ],
         columns: 3,
       },
       {
         type: "video",
-        src: mediaUrl("/images/work/$XRPINU Work/XRPINU 06.mp4"),
-        // src: mediaUrl("/images/work/$XRPINU Work/XRPINU 07.mp4"),
+        src: "/images/work/$XRPINU Work/XRPINU 06.mp4",
+        // src: "/images/work/$XRPINU Work/XRPINU 07.mp4",
       },
       {
         type: "video",
-        // src: mediaUrl("/images/work/$XRPINU Work/XRPINU 06.mp4"),
-        src: mediaUrl("/images/work/$XRPINU Work/XRPINU 07.mp4"),
+        // src: "/images/work/$XRPINU Work/XRPINU 06.mp4",
+        src: "/images/work/$XRPINU Work/XRPINU 07.mp4",
       },
       {
         type: "stat",
@@ -194,8 +193,8 @@ const work = [
     tagline: "Memecoin · Brand & Content",
     description:
       "$Mbapepe is a meme-driven crypto brand inspired by internet and football culture. I helped shape its visual identity through engaging content and community-focused design.",
-    cover: mediaUrl("/images/work/$Mbapepe Work/Mbapepe cover.png"),
-    hero: mediaUrl("/images/work/$Mbapepe Work/Mbapepe Banner.png"),
+    cover: "/images/work/$Mbapepe Work/Mbapepe cover.png",
+    hero: "/images/work/$Mbapepe Work/Mbapepe Banner.png",
     tags: ["Branding", "Illustration", "Web3", "Motion"],
     year: "2023",
     role: "Graphic Designer",
@@ -207,7 +206,7 @@ const work = [
       },
       {
         type: "image",
-        src: mediaUrl("/images/work/$Mbapepe Work/Mbapepe 05.png"),
+        src: "/images/work/$Mbapepe Work/Mbapepe 05.png",
         alt: "$MICHI brand showcase",
         aspect: "wide",
       },
@@ -219,16 +218,16 @@ const work = [
       {
         type: "grid",
         images: [
-         { src: mediaUrl("/images/work/$Mbapepe Work/Mbapepe 01.png"), alt: "Mbapepe design 01" },
-         { src: mediaUrl("/images/work/$Mbapepe Work/Mbapepe 02.png"), alt: "Mbapepe design 02" },
-         { src: mediaUrl("/images/work/$Mbapepe Work/Mbapepe 03.png"), alt: "Mbapepe design 03" },
-         { src: mediaUrl("/images/work/$Mbapepe Work/Mbapepe 04.png"), alt: "Mbapepe design 04" },
+         { src: "/images/work/$Mbapepe Work/Mbapepe 01.png", alt: "Mbapepe design 01" },
+         { src: "/images/work/$Mbapepe Work/Mbapepe 02.png", alt: "Mbapepe design 02" },
+         { src: "/images/work/$Mbapepe Work/Mbapepe 03.png", alt: "Mbapepe design 03" },
+         { src: "/images/work/$Mbapepe Work/Mbapepe 04.png", alt: "Mbapepe design 04" },
         ],
         columns: 3,
       },
       {
         type: "video",
-        src: mediaUrl("/images/work/$Mbapepe Work/Mbapepe 07.mp4"),
+        src: "/images/work/$Mbapepe Work/Mbapepe 07.mp4",
       },
       {
         type: "stat",

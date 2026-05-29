@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import ImageGallery from "../ImageGallery";
-import { mediaUrl } from "../../config/media";
 import { graphicCategories } from "../../data/categories";
 
 const NavigationComponent = ({
@@ -100,7 +99,7 @@ const NavigationComponent = ({
               <div className="absolute inset-1 rounded-full border-2 border-transparent border-t-orange border-r-orange animate-spin [animation-duration:0.55s]" />
               <div className="absolute inset-4 rounded-full bg-orange/15 blur-sm" />
               <img
-                src={mediaUrl("/images/OE.png")}
+                src="/images/OE.png"
                 alt=""
                 className="absolute inset-0 m-auto h-5 w-5 object-contain"
               />

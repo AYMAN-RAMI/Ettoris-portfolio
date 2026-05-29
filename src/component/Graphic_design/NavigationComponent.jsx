@@ -11,7 +11,8 @@ const NavigationComponent = ({
   categoryParam,
 }) => {
   const location = useLocation();
-  const timeoutRef = useRef(null);
+  const switchTimeoutRef = useRef(null);
+  const loadingTimeoutRef = useRef(null);
 
   const getInitialCategory = useCallback(() => {
     if (!categoryParam) return categories[0] || "";
@@ -23,26 +24,33 @@ const NavigationComponent = ({
   }, [categories, categoryParam, location.search]);
 
   const [activeCategory, setActive] = useState(getInitialCategory);
+  const activeCategoryRef = useRef(activeCategory);
   const [fading, setFading] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const changeCategory = useCallback((category) => {
-    if (category === activeCategory) return;
+  useEffect(() => {
+    activeCategoryRef.current = activeCategory;
+  }, [activeCategory]);
 
-    window.clearTimeout(timeoutRef.current);
+  const changeCategory = useCallback((category) => {
+    if (category === activeCategoryRef.current) return;
+
+    window.clearTimeout(switchTimeoutRef.current);
+    window.clearTimeout(loadingTimeoutRef.current);
     setLoading(true);
     setFading(true);
 
-    timeoutRef.current = window.setTimeout(() => {
+    switchTimeoutRef.current = window.setTimeout(() => {
+      activeCategoryRef.current = category;
       setActive(category);
       onSelect && onSelect(category);
       setFading(false);
 
-      timeoutRef.current = window.setTimeout(() => {
+      loadingTimeoutRef.current = window.setTimeout(() => {
         setLoading(false);
       }, 160);
     }, 160);
-  }, [activeCategory, onSelect]);
+  }, [onSelect]);
 
   useEffect(() => {
     const timeout = window.setTimeout(() => {
@@ -51,7 +59,8 @@ const NavigationComponent = ({
 
     return () => {
       window.clearTimeout(timeout);
-      window.clearTimeout(timeoutRef.current);
+      window.clearTimeout(switchTimeoutRef.current);
+      window.clearTimeout(loadingTimeoutRef.current);
     };
   }, [changeCategory, getInitialCategory]);
 

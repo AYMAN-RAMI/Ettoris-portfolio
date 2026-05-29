@@ -7,7 +7,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 const ImageGallery = ({ images }) => {
   const [model, setModel]   = useState(false);
   const [imgSrc, setImgSrc] = useState('');
-  const [previewVideoIndex, setPreviewVideoIndex] = useState(null);
+  const [videoReady, setVideoReady] = useState({});
   const isVideo = (src) => /\.(mp4|webm|mov)$/i.test(src);
   const isGif = (src) => /\.gif$/i.test(src);
 
@@ -20,6 +20,8 @@ const ImageGallery = ({ images }) => {
   const isExplainerGallery = images[0]?.category === "Explainer Videos";
   const isTelegramStickersGallery = images[0]?.category === "Animated Telegram Stickers";
   const isGraphicStickersGallery = images[0]?.category === "Stickers";
+  const shouldAutoplayGridVideos = isShortsGallery || isExplainerGallery;
+  const eagerCount = 8;
   const mediaClass =
     "block h-full w-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.01]";
   const getMediaClass = (index) =>
@@ -103,11 +105,9 @@ const ImageGallery = ({ images }) => {
             key={index}
             className={`${isShortsGallery ? "relative aspect-[9/16]" : isExplainerGallery ? `relative ${index === 0 ? "aspect-[9/16] w-full" : "aspect-video self-center"}` : isTelegramStickersGallery || isGraphicStickersGallery ? "relative aspect-video" : item.divClass} group overflow-hidden rounded-lg bg-bleu/40 shadow-[0_18px_50px_rgba(0,0,0,0.22)] ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.34)] hover:ring-orange/35`}
             onClick={() => openImg(item)}
-            onMouseEnter={() => isVideo(item.src) && setPreviewVideoIndex(index)}
-            onFocus={() => isVideo(item.src) && setPreviewVideoIndex(index)}
           >
             {isVideo(item.src) ? (
-              previewVideoIndex === index ? (
+              shouldAutoplayGridVideos ? (
                 <video
                   src={item.src}
                   className={getMediaClass(index)}
@@ -115,21 +115,51 @@ const ImageGallery = ({ images }) => {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_center,rgba(228,58,25,0.14),transparent_42%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))]">
+              <>
+                <video
+                  src={item.src}
+                  className={`${getMediaClass(index)} ${videoReady[index] ? "opacity-100" : "opacity-0"} transition-opacity duration-300`}
+                  muted
+                  playsInline
+                  preload="auto"
+                  onLoadedData={() =>
+                    setVideoReady((current) => ({ ...current, [index]: true }))
+                  }
+                />
+                <div
+                  className={`absolute inset-0 flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_center,rgba(228,58,25,0.14),transparent_42%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))] transition-opacity duration-300 ${
+                    videoReady[index] ? "opacity-0" : "opacity-100"
+                  }`}
+                >
                   <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-noir/35 text-orange shadow-[0_0_24px_rgba(0,0,0,0.28)] backdrop-blur-sm">
                     <span className="ml-0.5 h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-current" />
                   </div>
                 </div>
+                <div className="pointer-events-none absolute inset-0 z-[1] flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/25 bg-noir/45 text-orange shadow-[0_0_24px_rgba(0,0,0,0.28)] backdrop-blur-sm">
+                    <span className="ml-0.5 h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-current" />
+                  </div>
+                </div>
+              </>
               )
             ) : isGif(item.src) ? (
               <img
                 src={item.src}
                 alt={item.title}
-                loading="lazy"
+                loading={index < eagerCount ? "eager" : "lazy"}
                 decoding="async"
+                className={getMediaClass(index)}
+              />
+            ) : index < eagerCount ? (
+              <img
+                src={item.src}
+                alt={item.title}
+                loading="eager"
+                decoding="async"
+                fetchPriority={index < 2 ? "high" : "auto"}
                 className={getMediaClass(index)}
               />
             ) : (

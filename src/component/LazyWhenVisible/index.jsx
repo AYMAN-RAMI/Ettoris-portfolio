@@ -4,7 +4,7 @@ const LazyWhenVisible = ({
   children,
   className = "",
   minHeight = "min-h-[320px]",
-  rootMargin = "360px 0px",
+  rootMargin = "900px 0px",
 }) => {
   const containerRef = useRef(null);
   const [isVisible, setIsVisible] = useState(false);

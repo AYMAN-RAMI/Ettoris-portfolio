@@ -14,8 +14,8 @@ const About = () => {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-6 lg:max-w-7xl p-4 mx-auto ">
 
             <div className="relative lg:w-2/5">
-                <img src={mediaUrl("images/ABOUT-image.webp")} alt="myimage" className=" w-full h-auto object-cover" />
-                <video className="absolute  bottom-0 left-1/2 transform -translate-x-1/2" src={mediaUrl("images/Animation Logo.webm")} autoPlay loop muted></video>
+                <img src={mediaUrl("images/ABOUT-image.webp")} alt="myimage" loading="lazy" decoding="async" className=" w-full h-auto object-cover" />
+                <video className="absolute  bottom-0 left-1/2 transform -translate-x-1/2" src={mediaUrl("images/Animation Logo.webm")} autoPlay loop muted playsInline preload="metadata"></video>
             </div>
             <div className="lg:w-1/2 lg:p-2 text-lg lg:text-xl leading-relaxed">
                 <span className="font-bold">Hello!</span><br/>
@@ -43,7 +43,7 @@ const About = () => {
                     </a>    
                     <br/>or find me on social media as <a href="https://www.instagram.com/othmaneettori/" className="underline text-orange hover:text-bleu" target="_blank" rel='noreferrer'>@Othmaneettori</a>
                     <a href="https://www.instagram.com/othmaneettori/" className="ml-2 inline-flex h-5 w-5 items-center justify-center align-middle" target="_blank" rel='noreferrer' aria-label="Instagram Othmane Ettori">
-                        <img src={mediaUrl("images/icons/Insta.png")} alt="" className="h-full w-full object-contain" />
+                        <img src={mediaUrl("images/icons/Insta.png")} alt="" loading="lazy" decoding="async" className="h-full w-full object-contain" />
                     </a>
                     </p>
                 </div>

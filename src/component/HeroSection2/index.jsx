@@ -12,6 +12,7 @@ const HeroSection2 = () => {
         loop
         muted
         playsInline
+        preload="auto"
         aria-hidden="true"
       />
 

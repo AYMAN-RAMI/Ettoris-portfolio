@@ -10,6 +10,7 @@ const HeroSection = () => {
                 loop
                 muted
                 playsInline
+                preload="auto"
             ></video>
 
             <div

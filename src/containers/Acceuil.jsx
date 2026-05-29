@@ -2,6 +2,7 @@ import { Suspense, lazy } from "react";
 import GraphicDesignPage from "../component/Graphic_design";
 import HeroSection from "../component/HeroSection";
 import HeroSection2 from "../component/HeroSection2";
+import LazyWhenVisible from "../component/LazyWhenVisible";
 import MotionDesignPage from "../component/Motion_design";
 import FeaturedWork from "../component/work/FeaturedWork";
 import graphicDesignItems from "../data/graphicDesign";
@@ -18,13 +19,23 @@ const Accueil = () => {
 
       <div className="relative min-h-screen bg-bleu">
         <Suspense fallback={null}>
-          <FeaturedWork />
+          <LazyWhenVisible minHeight="min-h-[520px]">
+            <FeaturedWork />
+          </LazyWhenVisible>
           <div aria-hidden="true" className="h-4 bg-bleu md:h-6" />
-          <GraphicDesignPage imagesArr={graphicDesignItems} />
-          <MotionDesignPage imagesArr={motionDesignItems} />
+          <LazyWhenVisible minHeight="min-h-[640px]">
+            <GraphicDesignPage imagesArr={graphicDesignItems} />
+          </LazyWhenVisible>
+          <LazyWhenVisible minHeight="min-h-[640px]">
+            <MotionDesignPage imagesArr={motionDesignItems} />
+          </LazyWhenVisible>
           <div aria-hidden="true" className="h-4 bg-bleu md:h-6" />
-          <About />
-          <Footer />
+          <LazyWhenVisible minHeight="min-h-[420px]">
+            <About />
+          </LazyWhenVisible>
+          <LazyWhenVisible minHeight="min-h-[220px]">
+            <Footer />
+          </LazyWhenVisible>
         </Suspense>
       </div>
     </>

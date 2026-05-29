@@ -7,6 +7,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 const ImageGallery = ({ images }) => {
   const [model, setModel]   = useState(false);
   const [imgSrc, setImgSrc] = useState('');
+  const [previewVideoIndex, setPreviewVideoIndex] = useState(null);
   const isVideo = (src) => /\.(mp4|webm|mov)$/i.test(src);
   const isGif = (src) => /\.gif$/i.test(src);
 
@@ -15,9 +16,6 @@ const ImageGallery = ({ images }) => {
     setModel(true);
   };
   const closeImg = ()  => { setModel(false); setImgSrc('');   };
-  const playWhenReady = (event) => {
-    event.currentTarget.play().catch(() => {});
-  };
   const isShortsGallery = images[0]?.category === "Shorts Videos";
   const isExplainerGallery = images[0]?.category === "Explainer Videos";
   const isTelegramStickersGallery = images[0]?.category === "Animated Telegram Stickers";
@@ -50,20 +48,14 @@ const ImageGallery = ({ images }) => {
       >
         {imgSrc && (
           isVideo(imgSrc) ? (
-            <video
-              src={imgSrc}
-              className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-2xl"
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-            />
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(228,58,25,0.16),transparent_42%)]" />
           ) : (
             <img
               src={imgSrc}
               alt=""
               className="pointer-events-none absolute inset-0 h-full w-full scale-110 object-cover opacity-35 blur-2xl"
+              loading="lazy"
+              decoding="async"
               aria-hidden="true"
             />
           )
@@ -79,6 +71,7 @@ const ImageGallery = ({ images }) => {
               autoPlay
               controls
               loop
+              preload="metadata"
               onClick={(e) => e.stopPropagation()}
             />
           ) : (
@@ -86,6 +79,8 @@ const ImageGallery = ({ images }) => {
               src={imgSrc}
               alt="enlarged"
               className="relative z-10 h-auto max-h-full w-auto max-w-full object-contain p-6 md:p-10"
+              loading="eager"
+              decoding="async"
               onClick={(e) => e.stopPropagation()}
             />
           )
@@ -108,23 +103,33 @@ const ImageGallery = ({ images }) => {
             key={index}
             className={`${isShortsGallery ? "relative aspect-[9/16]" : isExplainerGallery ? `relative ${index === 0 ? "aspect-[9/16] w-full" : "aspect-video self-center"}` : isTelegramStickersGallery || isGraphicStickersGallery ? "relative aspect-video" : item.divClass} group overflow-hidden rounded-lg bg-bleu/40 shadow-[0_18px_50px_rgba(0,0,0,0.22)] ring-1 ring-white/5 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(0,0,0,0.34)] hover:ring-orange/35`}
             onClick={() => openImg(item)}
+            onMouseEnter={() => isVideo(item.src) && setPreviewVideoIndex(index)}
+            onFocus={() => isVideo(item.src) && setPreviewVideoIndex(index)}
           >
             {isVideo(item.src) ? (
-              <video
-                src={item.src}
-                className={getMediaClass(index)}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                onLoadedData={playWhenReady}
-              />
+              previewVideoIndex === index ? (
+                <video
+                  src={item.src}
+                  className={getMediaClass(index)}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_center,rgba(228,58,25,0.14),transparent_42%),linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.015))]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/20 bg-noir/35 text-orange shadow-[0_0_24px_rgba(0,0,0,0.28)] backdrop-blur-sm">
+                    <span className="ml-0.5 h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-current" />
+                  </div>
+                </div>
+              )
             ) : isGif(item.src) ? (
               <img
                 src={item.src}
                 alt={item.title}
                 loading="lazy"
+                decoding="async"
                 className={getMediaClass(index)}
               />
             ) : (
@@ -132,6 +137,8 @@ const ImageGallery = ({ images }) => {
                 src={item.src}
                 alt={item.title}
                 effect="blur"
+                loading="lazy"
+                decoding="async"
                 className={getMediaClass(index)}
                 wrapperClassName="block h-full w-full"
               />

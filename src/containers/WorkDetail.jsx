@@ -35,6 +35,7 @@ const ImageSection = ({ section, onOpen }) => (
       src={section.src}
       alt={section.alt ?? ""}
       loading="lazy"
+      decoding="async"
       className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.02]"
     />
   </div>
@@ -52,6 +53,7 @@ const VideoSection = ({ section, onOpen }) => (
       loop
       muted
       playsInline
+      preload="metadata"
     />
   </div>
 );
@@ -81,6 +83,7 @@ const VideoGridSection = ({ section, onOpen }) => {
               loop
               muted
               playsInline
+              preload="metadata"
             />
             {vid.label && (
               <div className="absolute bottom-0 left-0 right-0 px-4 py-3 bg-gradient-to-t from-black/80 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-300">
@@ -112,6 +115,7 @@ const GridSection = ({ section, onOpen }) => {
             src={img.src}
             alt={img.alt ?? ""}
             loading="lazy"
+            decoding="async"
             className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.025]"
           />
         </div>
@@ -135,6 +139,7 @@ const RowSection = ({ section, onOpen }) => (
           src={img.src}
           alt={img.alt ?? ""}
           loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </div>
@@ -210,6 +215,8 @@ const WorkDetail = () => {
             <img
               src={heroImage}
               alt={workItem.title}
+              fetchPriority="high"
+              decoding="async"
               className="h-full w-full object-cover object-center"
             />
           </div>
@@ -314,6 +321,7 @@ const WorkDetail = () => {
             autoPlay
             controls
             loop
+            preload="metadata"
             onClick={(event) => event.stopPropagation()}
           />
         ) : (
@@ -321,6 +329,8 @@ const WorkDetail = () => {
             src={lightboxSrc}
             alt=""
             className="h-auto max-h-full w-auto max-w-full object-contain p-6 md:p-10"
+            loading="eager"
+            decoding="async"
             onClick={(event) => event.stopPropagation()}
           />
         )}
